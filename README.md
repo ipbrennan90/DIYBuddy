@@ -35,7 +35,7 @@ brew install watchman
 
 Welcome to the world of instantaneous builds, if you're used to twiddling your thumbs, calling your mom, or checking in on [A Dark Room](http://adarkroom.doublespeakgames.com/) say goodbye to needless workplace fun and hello to non-stop productivity. If you're used to HMR well, good for you, nothing should impress you about watchman, but I promise you it's amazing. Save a file and watch the simulator reload. MAGIC.
 
-Moving on, you'll need to install the React-Native command line interface so you can quickly get up and running. Time to install that baby now, brew it up.
+Moving on, you'll need to install the React-Native command line interface so you can quickly get up and running. Time to install that baby now.
 
 ```
 npm install -g react-native-cli
