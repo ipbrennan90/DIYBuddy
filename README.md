@@ -89,12 +89,11 @@ react-native link
 ```
 
 cross your fingers and hope that react-native is as smart as it thinks it is. It will, in most cases, catch all the dependencies that require linking and link them automatically. If that doesn't work you can always [manually link them](https://facebook.github.io/react-native/docs/linking-libraries-ios.html).
-<<<<<<< HEAD
 
 Once this is done you can write up your camera
 
 Checkout the branch feature/camera, to checkout the basic camera code.
 
 ###Adding a Navigator Branch
-=======
->>>>>>> feature/camera
+
+In this Branch we will be adding basic navigation by adding a NavigatorIOS Component as an overlay to our camera component. This is a design choice, it does add some unnecessary complication but I do believe it looks cool, so sometimes it's worth a few headaches along the way.
