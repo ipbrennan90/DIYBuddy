@@ -89,9 +89,12 @@ react-native link
 ```
 
 cross your fingers and hope that react-native is as smart as it thinks it is. It will, in most cases, catch all the dependencies that require linking and link them automatically. If that doesn't work you can always [manually link them](https://facebook.github.io/react-native/docs/linking-libraries-ios.html).
+<<<<<<< HEAD
 
 Once this is done you can write up your camera
 
 Checkout the branch feature/camera, to checkout the basic camera code.
 
 ###Adding a Navigator Branch
+=======
+>>>>>>> feature/camera
