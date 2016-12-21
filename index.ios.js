@@ -22,6 +22,7 @@ export default class DIYBuddy extends Component {
 			cameraType: Camera.constants.Type.back
 		}
 		this.bindContext()
+
 	}
 
 	bindContext() {
