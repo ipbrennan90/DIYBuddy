@@ -60,8 +60,32 @@ You should see all sorts of stuff happening in your terminal, marvel at your com
 
 ![alt text](https://koenig-media.raywenderlich.com/uploads/2016/02/ReactNative-Starter-281x500.png "react native launch screen")
 
-CMD+R is a really useful command if things get screwy. Also hit CMD+D and enable hot-reloading, or live reloading. This will add the absolutely killer feature of your simulator reloading every time it senses a file has changed, or every time you have saved a file. You can also enable remote debugging, this will open a browser window and anything you are logging will be able to be seen if you inspect the open browset page. I haven't done a deep dive into what else you can explore in the remote debugger but I'm sure there's lots of hidden gems in there. You can also hit the show inspector button, this magical feature will show you a browser-like tool where you can click on different elements and it will show you it's padding, margins, and other styles that you've added to the element, much like the chrome debugger or other browser inspectors. This, if you've been working with xcode, is an amazing little tool and is really, really, helpful with working out what exactly the styles you're applying are actually doing. You can also run the project in Xcode and use any of the handy debugging tools within just as you would with any other IOS app.
+CMD+R is a really useful command if things get screwy. Also hit CMD+D and enable hot-reloading, or live reloading. This will add the absolutely killer feature of your simulator reloading every time it senses a file has changed, or every time you have saved a file. You can also enable remote debugging, this will open a browser window and anything you are logging will be able to be seen if you inspect the open browser page. I haven't done a deep dive into what else you can explore in the remote debugger but I'm sure there's lots of hidden gems in there. You can also hit the show inspector button, this magical feature will show you a browser-like tool where you can click on different elements and it will show you it's padding, margins, and other styles that you've added to the element, much like the chrome debugger or other browser inspectors. This, if you've been working with xcode, is an amazing little tool and is really, really, helpful with working out what exactly the styles you're applying are actually doing. You can also run the project in Xcode and use any of the handy debugging tools within just as you would with any other IOS app.
 
 If, by chance, your application crashes right off the bat, or something wonky should occur. I would recommend shutting down the terminal that is running the application (the second one that popped up after the run-ios command) and running the run-ios command again.
 
 Alright, let's start writing some react!
+
+
+### Camera Branch
+
+The first thing I want to do here is get the phone's camera up and running in the react app. This includes some things that might be a bit complicated for newcomers but I will try to be as thorough as possible, feel free to reach out if at any point you get lost.
+
+We will be using a dependency to get into the camera on the phone. Consider yourself lucky that there are some geniuses out there doing your job for you:
+
+```
+npm install react-native-camera --save
+```
+This one is a little weird, it is allowing us to use code native to IOS to access the camera. In order to do that we have to do what's called linking. Luckily react-native allows us to do that in a simple command:
+
+```
+react-native link react-native-camera
+```
+
+in the above command, if you had multiple dependencies that needed linking, or maybe a dependency that you weren't sure of, but may need linking you can just run the above command without specifying a library to link like:
+
+```
+react-native link
+```
+
+cross your fingers and hope that react-native is as smart as it thinks it is. It will, in most cases, catch all the dependencies that require linking and link them automatically. If that doesn't work you can always [manually link them](https://facebook.github.io/react-native/docs/linking-libraries-ios.html).
