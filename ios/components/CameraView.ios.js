@@ -2,13 +2,13 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
 	TouchableHighlight
 } from 'react-native';
 import Camera from 'react-native-camera';
+import ProjectView from './ProjectView.ios.js'
 
 export default class CameraView extends Component {
 
@@ -24,6 +24,7 @@ export default class CameraView extends Component {
 	bindContext() {
 		this.takePicture = this._takePicture.bind(this);
 		this.switchCamera = this._switchCamera.bind(this);
+		this.toProject = this._toProject.bind(this);
 	}
 
 	_takePicture() {
@@ -37,7 +38,16 @@ export default class CameraView extends Component {
 		state.cameraType = state.cameraType === Camera.constants.Type.back ? Camera.constants.Type.front : Camera.constants.Type.back;
 		this.setState(state);
 	}
+
+	_toProject() {
+		this.props.navigator.push({
+			title: 'Project',
+			component: ProjectView,
+			passProps: {}
+		});
+	}
   render() {
+		let cameraTypeText = this.state.cameraType === Camera.constants.Type.back ? 'Back' : 'Selfie'
     return (
 			<Camera
 				ref={(cam) => {this.camera = cam;}}
@@ -46,10 +56,13 @@ export default class CameraView extends Component {
 				type={this.state.cameraType}>
 				<View style={styles.buttonBar}>
 					<TouchableHighlight style={styles.button} onPress={this.switchCamera}>
-						<Text style={styles.buttonText}>Flip</Text>
+						<Text style={styles.buttonText}>{cameraTypeText}</Text>
 					</TouchableHighlight>
 					<TouchableHighlight style={styles.button} onPress={this.takePicture}>
 						<Text style={styles.buttonText}>Take</Text>
+					</TouchableHighlight>
+					<TouchableHighlight style={styles.button} onPress={this.toProject}>
+						<Text style={styles.buttonText}>Project</Text>
 					</TouchableHighlight>
 				</View>
 			</Camera>
