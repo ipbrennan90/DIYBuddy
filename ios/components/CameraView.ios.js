@@ -18,6 +18,9 @@ export default class CameraView extends Component {
 			cameraType: Camera.constants.Type.back
 		}
 		this.bindContext()
+	}
+
+	componentDidMount() {
 
 	}
 
@@ -29,8 +32,8 @@ export default class CameraView extends Component {
 
 	_takePicture() {
 		this.camera.capture()
-			.then((data) => console.log(data))
-			.catch(err => console.error(err))
+			.then((data) => log.debug(data))
+			.catch(err => log.warn(err))
 	}
 
 	_switchCamera() {
@@ -89,7 +92,8 @@ const styles = StyleSheet.create({
 		padding: 10,
 		borderWidth: 1,
 		borderColor: '#FFFFFF',
-		margin: 5
+		margin: 5,
+		borderRadius: 5
 	},
 	buttonText: {
 		color: '#FFFFFF'
