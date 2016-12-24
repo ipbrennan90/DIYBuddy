@@ -95,3 +95,23 @@ Once this is done you can write up your camera
 Checkout the branch feature/camera, to checkout the basic camera code.
 
 ###Adding a Navigator Branch
+
+In this Branch we will be adding basic navigation by adding a NavigatorIOS Component. This means stripping out our initial camera code and making it it's own component.
+
+After doing that we need to add NavigatorIOS to our react-native import section, this is not a cross-platform navigator but I am sticking to IOS code for now since I do not own an android device at the moment. I will be making an attempt to do some cross platform adjustments later on. After NavigatorIOS is added to the import the index.ios.js should look really simple. Just a singe NavigatorIOS component that's initialRoute property points to the Camera component as the first component to load.
+
+####Issues with react-native navigationbar
+
+So, I initially thought I would use the built in navigation bar that comes out of the box with react native and is the same navigation bar seen when you use a navigationcontroller in native swift or objective-C. When trying to dynamically hide and show said navbar ran into a problem where the navbar could be hidden on the camera initially but there were no good event listeners for when a view was pushed on or popped off of the navigator. This meant hiding the navigation bar dynamically when popping off a view controller and returning to the Camera view was pretty much impossible. After a solid attempt at jerry rigging a viewdidappear function I decided to just jump in and make my own navbar so I would have complete control of the navigation bar showing up and getting hidden, as well as the callbacks from hitting the left or right side buttons on said NavBar. On top of all that I learned a good lesson in creating dynamic styles through adding functions that return style code blocks. All of this code is available to see if you check out the feature/basic-navigation branch and look at the NavBar component file. I have also added eslint in this branch, should have done this from the get-go, but better late than never. I found a straightforward and thorough tutorial of how to add it and make it play nicely with react-native [here](https://medium.com/the-react-native-log/getting-eslint-right-in-react-native-bd27524cc77b#.4a6c357x6). for those of you who don't know eslint is a great little tool that helps you write cleaner code with no un-used variables and every single semi-colon, which I sometimes forget when going back and forth between the languages.
+
+####PropType Validation
+
+This branch also was the first branch where component props came into play in a serious way. I have always been a fan of PropType validation as an extra layer of security when shooting from the hip in a loosely typed language such as Javascript. PropType validation is a way that you can validate that the type of the prop getting passed into the component is of the type you expect. You can also require that a prop is passed in before a component gets loaded. If that prop is not passed, or is of a different type than specified your application will break, ensuring that you get this right, otherwise your app could break farther down the stack and it could not be caught or result in a bug that's harder to catch. The errors thrown by PropType validations are readable and will break immediately, making it easy to trace and easy to fix. So, how do you write them you ask? First step includes just adding PropTypes to your import from the react frame work. Then, within your component class definition you simply add a static variable, I like to add them at the top and it looks as simple as:
+
+```
+static propTypes = {
+	title: PropTypes.string.isRequired,
+	callback: PropTypes.function,
+	person: PropTypes.object
+}
+```
