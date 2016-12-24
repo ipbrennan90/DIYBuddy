@@ -3,30 +3,53 @@
  * https://github.com/facebook/react-native
  * @flow
  */
+'use strict';
 
 import React, { Component } from 'react';
-import {
+import ReactNative, {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+	TouchableHighlight
 } from 'react-native';
-
+import CameraView from './ios/components/CameraView.ios.js'
 export default class DIYBuddy extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			navigationBarIsHidden: true
+		}
+		this.bindContext();
+	}
+
+	bindContext() {
+		this.toggleNavBar = this.toggleNavBar.bind(this);
+	}
+
+	componentDidMount(){
+		console.log('INDEX DID MOUNT');
+	}
+
+	toggleNavBar(navigationBarIsHidden) {
+		console.log('toggle nav bar called', navigationBarIsHidden);
+		let state = this.state;
+		state.navigationBarIsHidden = navigationBarIsHidden;
+		this.setState(state);
+		console.log(this.state.navigationBarIsHidden)
+	}
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+			<ReactNative.NavigatorIOS
+				style={styles.container}
+				navigationBarHidden={this.state.navigationBarIsHidden}
+				initialRoute={{
+					title: 'Camera',
+					component: CameraView,
+					passProps: {toggleNavBar: this.toggleNavBar}
+				}}/>
     );
   }
 }
@@ -34,20 +57,7 @@ export default class DIYBuddy extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+	}
 });
 
 AppRegistry.registerComponent('DIYBuddy', () => DIYBuddy);
